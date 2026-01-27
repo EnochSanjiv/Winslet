@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If You Ever Feel This 🤍</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #020617, #0f172a, #1e293b);
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -20%;
+      background: radial-gradient(circle at center, rgba(255, 200, 220, 0.08), transparent 60%);
+      animation: glow 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes glow {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.3; }
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 50px 25px;
+    }
+
+    header h1 {
+      font-size: 3.6rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 35px;
+    }
+
+    header p {
+      max-width: 760px;
+      font-size: 1.5rem;
+      line-height: 2.4;
+      opacity: 0.92;
+    }
+
+    .heart {
+      margin-top: 55px;
+      animation: heartbeat 5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); opacity: 0.6; }
+      40% { transform: scale(1.25); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 150px 25px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.6rem;
+      font-weight: 400;
+      margin-bottom: 55px;
+    }
+
+    .soul {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px;
+      padding: 80px 70px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 60px 120px rgba(0, 0, 0, 0.6);
+    }
+
+    .soul p {
+      font-size: 1.45rem;
+      line-height: 2.6;
+    }
+
+    .birth {
+      margin-top: 45px;
+      font-size: 1.5rem;
+      opacity: 0.75;
+    }
+
+    button {
+      margin-top: 65px;
+      padding: 20px 55px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+      color: #020617;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hidden { display: none; margin-top: 65px; font-size: 1.4rem; line-height: 2.6; }
+
+    footer {
+      text-align: center;
+      padding: 110px 25px;
+      font-size: 1.05rem;
+      opacity: 0.65;
+    }
+
+    /* secret view */
+    #secretView {
+      min-height: 200vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,182,193,0.12), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,105,180,0.10), transparent 55%),
+        linear-gradient(180deg, #020617, #0b1025, #1a1230);
+      color: #f8fafc;
+      text-align: center;
+      padding: 120px 40px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    #secretHeart {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.18;
+      transform: scale(1.05);
+      transition: transform 0.1s linear, opacity 0.1s linear;
+      filter: drop-shadow(0 0 40px rgba(255,95,162,0.35));
+    }
+
+    .sorry {
+      font-size: 5rem;
+      letter-spacing: 4px;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: heartbeat 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Dulshia 🤍</h1>
+  <p style="font-size:1.15rem; opacity:0.85; margin-bottom:25px; line-height:2.2;">
+    Dulshia indha name-eh naa epavum sollikitae irupen.<br>
+    Enaku romba pidicha, romba pazhaguna,<br>
+    romba addicted-aa irundha oru vaarthai idhu.
+  </p>
+  <p>
+    Some people enter our lives quietly.<br><br>
+    They don’t change the world.<br><br>
+    They change us.<br><br>
+    And sometimes,<br>they become our world.
+  </p>
+  <div class="heart">
+    <svg width="90" height="90" viewBox="0 0 100 100">
+      <path d="M50 88C50 88 12 60 12 34C12 20 23 12 34 12C42 12 47 17 50 22C53 17 58 12 66 12C77 12 88 20 88 34C88 60 50 88 50 88Z" fill="#fbc2eb"/>
+    </svg>
+  </div>
+</header>
+
+<section>
+  <h2>If You Ever Feel Lost</h2>
+  <div class="soul">
+    <p>
+      There are moments when the world feels too loud,<br>
+      and the heart feels tired.<br><br>
+      It’s okay to stop.<br><br>
+      It’s okay to just breathe.
+    </p>
+    <div class="birth">April 6th 🌸</div>
+  </div>
+</section>
+
+<section>
+  <h2>What I Carry Quietly</h2>
+  <div class="soul">
+    <p>
+      Some feelings don’t fade.<br><br>
+      They simply remain, steady and sincere.
+    </p>
+    <button id="careBtn" onclick="reveal()">Read this when you are free 🤍</button>
+    <div class="hidden" id="message">
+      <p>
+        Dulshia,<br><br>
+        Loving you was never loud.<br><br>
+        You were always someone worth choosing.<br><br>
+        — Enoch 🤍
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with love that remains gentle<br>— Enoch<br><br>
+  <span style="cursor:pointer;" onclick="openSecret()">📁 Secret</span>
+</footer>
+
+<script>
+  function reveal() {
+    const msg = document.getElementById('message');
+    msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function openSecret() {
+    const pass = prompt('This is a quiet place. Enter the password 🤍');
+    if (pass !== 'Dulshia') return;
+
+    document.body.innerHTML = '';
+
+    const secret = document.createElement('div');
+    secret.id = 'secretView';
+
+    secret.innerHTML = `
+      <svg id="secretHeart" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <path d="M50 90C50 90 5 62 5 35C5 18 18 8 32 8C42 8 47 15 50 21C53 15 58 8 68 8C82 8 95 18 95 35C95 62 50 90 50 90Z" fill="#ff5fa2"/>
+      </svg>
+      <div style="position:relative; z-index:1; max-width:700px; margin-top:40vh;">
+        <div class="sorry">Sorry</div>
+        <p style="font-size:1.5rem; line-height:2.6;">Please forgive me Dulshia</p>
+      </div>
+      <div style="height:80vh;"></div>
+    `;
+
+    document.body.appendChild(secret);
+
+    window.addEventListener('scroll', () => {
+      const heart = document.getElementById('secretHeart');
+      if (!heart) return;
+      const y = window.scrollY;
+      const scale = 1.05 + y * 0.00015;
+      const opacity = Math.max(0.08, 0.22 - y * 0.00025);
+      heart.style.transform = `scale(${scale})`;
+      heart.style.opacity = opacity;
+    });
+  }
+</script>
+
+</body>
+</html>
