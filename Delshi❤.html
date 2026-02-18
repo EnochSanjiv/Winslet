@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If You Ever Feel This 🤍</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia','Times New Roman',serif; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #000000 0%, #020617 40%, #0b3a5a 100%);
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 25px;
+    }
+
+    header h1 {
+      font-size: 3.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    header p {
+      max-width: 760px;
+      font-size: 1rem;
+      line-height: 1.8;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .heart {
+      margin: 60px 0 20px 0; /* pushed down */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: heartbeat 5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); opacity: 0.6; }
+      40% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.6; }
+    }
+
+    section { max-width: 900px; margin: auto; padding: 120px 25px; text-align: center; }
+    h2 { font-size: 2.4rem; font-weight: 400; margin-bottom: 45px; }
+
+    .soul {
+      background: rgba(255,255,255,0.04);
+      border-radius: 40px;
+      padding: 60px 50px;
+      backdrop-filter: blur(12px);
+    }
+
+    .soul p { font-size: 1.3rem; line-height: 2.4; }
+
+    button {
+      margin-top: 45px;
+      padding: 18px 45px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+      color: #020617;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hidden { display: none; margin-top: 45px; }
+
+    footer { text-align: center; padding: 100px 25px; opacity: 0.7; }
+
+    
+
+    /* SECRET */
+    #secretView { min-height: 220vh; background: #020617; }
+
+    #secretHeart {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(90vw, 600px);
+      max-width: 95vw;
+      transform: translate(-50%, -50%) scale(0.9);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.4s ease-out;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .sorry {
+      font-size: 4.5rem;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
+      -webkit-background-clip: text;
+      background-clip: text; /* standard property for compatibility */
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2rem; }
+      header p { font-size: 1.1rem; }
+      h2 { font-size: 2rem; }
+      .soul { padding: 45px 30px; }
+      .sorry { font-size: 3rem; }
+      #secretHeart { width: min(80vw, 320px); }
+      .hug { font-size: 1.4em; }
+    }
+      
+    /* UNIQUE MEMORY BOX */
+    .memory-box {
+      position: relative;
+      width: 340px;
+      height: 220px;
+      border-radius: 32px;
+      background: radial-gradient(circle at top left, #8a0f3d 0%, #670D2F 35%, #5b1b6e 65%, #2b1055 100%);
+      box-shadow: 0 25px 80px rgba(103,13,47,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.6s cubic-bezier(.19,1,.22,1), box-shadow 0.6s ease;
+      overflow: hidden;
+    }
+
+
+    .memory-box:hover {
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0 60px 160px rgba(168,50,121,0.65);
+    }
+
+    .memory-box .name {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .memory-box .hover-msg {
+      position: absolute;
+      bottom: 25px;
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    /* keep name clear on hover */
+    .memory-box:hover .name { opacity: 1; }
+    .memory-box:hover .hover-msg { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .memory-box {
+        width: 260px;
+        height: 170px;
+      }
+      .memory-box .name { font-size: 2rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" style="position:fixed; inset:0; background:linear-gradient(135deg,#1b0c2e,#2b1055,#5b1b6e,#a83279); display:flex; align-items:center; justify-content:center; z-index:9999;">
+  <div style="background:rgba(0,0,0,0.35); padding:50px 40px; border-radius:30px; text-align:center; backdrop-filter:blur(12px); max-width:360px; width:90%;">
+    <h2 style="font-size:2.2rem; margin-bottom:20px; letter-spacing:0.08em;">Welcome</h2>
+    <p style="opacity:0.85; margin-bottom:30px; line-height:1.8;">This space is only for someone special</p>
+    <input id="loginPass" type="password" placeholder="Enter the name" style="width:100%; padding:14px 18px; border-radius:999px; border:none; outline:none; font-size:1rem; text-align:center; margin-bottom:25px;" onkeydown="if(event.key==='Enter'){login();}" />
+    <button onclick="login()" style="padding:14px 40px; border-radius:999px; border:none; background:linear-gradient(135deg,#fbc2eb,#a6c1ee); cursor:pointer; font-size:1rem;">Enter</button>
+    <p id="loginError" style="color:#fda4af; margin-top:20px; display:none;">That name feels wrong</p>
+  </div>
+</div>
+
+<header>
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; gap:28px;">
+    <h1>Dulshia 🤍</h1>
+    <p>
+      The name ‘Dulshia’ is something I keep saying to myself again and again.<br>
+      It’s a word I love deeply—one I’m completely addicted to.
+    </p>
+
+    <div class="heart" style="display:flex; justify-content:center; align-items:center;">
+      <svg width="160" height="160" viewBox="0 0 100 100">
+        <path d="M50 88C50 88 12 60 12 34C12 20 23 12 34 12C42 12 47 17 50 22C53 17 58 12 66 12C77 12 88 20 88 34C88 60 50 88 50 88Z" fill="#fbc2eb"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>If You Ever Feel Lost</h2>
+  <div class="soul">
+    <p>
+      Whenever you feel lost, turn your heart toward God—and just a little toward me.<br>
+      He will be your guiding light, and I’ll be right beside you, quietly holding your hand.<br><br>
+      You are the princess of my heart, and no matter how dark the night becomes, you will never have to walk alone.<br>
+      You are my world—now and always.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>What I Carry Quietly</h2>
+  <div class="soul">
+    <p>Some feelings remain sincere.</p>
+    <button onclick="reveal()">Read this when you are free 🤍</button>
+    <div class="hidden" id="message">
+      <p>
+        Hey, chellakutty…<br>
+        my beautiful one, my precious child.<br>
+        If you were with me, I’d keep pampering you all the time, holding you close,<br>
+        taking care of you like a little baby—with so much love, so much care, and all my heart.<br><br>
+        — Enoch 🤍
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  From the quiet moments of remembering you<br><br>
+  <span style="cursor:pointer;" onclick="openSecret()">📁 Secret</span>
+</footer>
+
+<script>
+  function login() {
+    const pass = document.getElementById('loginPass').value.trim();
+    const err = document.getElementById('loginError');
+    if (pass === 'Dulshia Winslet') {
+      document.getElementById('loginScreen').style.display = 'none';
+      window.scrollTo(0,0);
+    } else {
+      err.style.display = 'block';
+    }
+  }
+
+
+  function reveal() {
+    const msg = document.getElementById('message');
+    msg.style.display = msg.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function openSecret() {
+    // Linux-style hidden password overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.inset = '0';
+    overlay.style.background = 'rgba(0,0,0,0.85)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = '10000';
+
+    const box = document.createElement('div');
+    box.style.background = 'linear-gradient(135deg, #020617 0%, #1b0c2e 40%, #2b1055 70%, #5b1b6e 100%)';
+    box.style.padding = '28px 26px';
+    box.style.borderRadius = '18px';
+    box.style.textAlign = 'left';
+    box.style.backdropFilter = 'blur(14px)';
+    box.style.width = '260px';
+    box.style.maxWidth = '260px';
+    box.style.fontFamily = 'monospace';
+    box.style.position = 'relative';
+
+    
+
+    const prompt = document.createElement('div');
+    prompt.innerText = '›';
+    prompt.style.position = 'absolute';
+    prompt.style.left = '18px';
+    prompt.style.top = '50%';
+    prompt.style.transform = 'translateY(-50%)';
+    prompt.style.color = '#94a3b8';
+    prompt.style.fontSize = '1.1rem';
+
+    const input = document.createElement('input');
+    // Linux-style: no visible characters at all
+    input.type = 'text';
+    input.autocomplete = 'off';
+    input.spellcheck = false;
+    input.style.width = '100%';
+    input.style.padding = '14px 18px';
+    input.style.borderRadius = '999px';
+    input.style.border = 'none';
+    input.style.outline = 'none';
+    input.style.textAlign = 'left';
+    input.style.paddingLeft = '32px';
+    input.style.fontSize = '1rem';
+    input.style.background = '#020617';
+    input.style.color = 'transparent';
+    input.style.caretColor = 'transparent';
+
+    const error = document.createElement('p');
+    error.innerText = 'Access denied';
+    error.style.color = '#fda4af';
+    error.style.position = 'absolute';
+    error.style.bottom = '-26px';
+    error.style.left = '0';
+    error.style.width = '100%';
+    error.style.textAlign = 'center';
+    error.style.display = 'none';
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        if (input.value === 'Dulshia') {
+          overlay.remove();
+          openSecretWorld();
+        } else {
+          error.style.display = 'block';
+          box.animate([
+            { transform: 'translateX(0)' },
+            { transform: 'translateX(-6px)' },
+            { transform: 'translateX(6px)' },
+            { transform: 'translateX(-4px)' },
+            { transform: 'translateX(4px)' },
+            { transform: 'translateX(0)' }
+          ], { duration: 280, easing: 'ease-in-out' });
+        }
+      }
+    });
+
+    
+    box.appendChild(prompt);
+    box.appendChild(input);
+    box.appendChild(error);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    input.focus();
+  }
+
+  function openSecretWorld() {
+    document.body.innerHTML = '';
+
+    const secret = document.createElement('div');
+    secret.id = 'secretView';
+    secret.style.minHeight = '100vh';
+    secret.style.display = 'flex';
+    secret.style.alignItems = 'center';
+    secret.style.justifyContent = 'center';
+    secret.style.background = 'linear-gradient(135deg, #1b0c2e 0%, #2b1055 40%, #5b1b6e 70%, #a83279 100%)';
+
+    const box = document.createElement('div');
+    box.className = 'memory-box';
+    box.innerHTML = '<span class="name">Dulshia</span>';
+
+    box.addEventListener('click', () => {
+      openInnerWorld();
+    });
+
+    secret.appendChild(box);
+    document.body.appendChild(secret);
+    window.scrollTo(0, 0);
+  }
+
+  function openInnerWorld() {
+    document.body.innerHTML = '';
+
+    const world = document.createElement('div');
+    world.style.minHeight = '100vh';
+    world.style.display = 'flex';
+    world.style.flexDirection = 'column';
+    world.style.justifyContent = 'center';
+    world.style.alignItems = 'center';
+    world.style.textAlign = 'center';
+    world.style.padding = '80px 25px';
+
+    /* UNIQUE PINK–PURPLE WORLD */
+    world.style.background = `
+      radial-gradient(circle at 20% 20%, rgba(255,105,180,0.18), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(168,85,247,0.18), transparent 45%),
+      linear-gradient(180deg, #12001c 0%, #2b0a3d 45%, #4b0f52 70%, #670D2F 100%)
+    `;
+    world.style.color = '#fdf2f8';
+
+    const title = document.createElement('h1');
+    title.innerText = 'Dulshia';
+    title.style.fontSize = '4.2rem';
+    title.style.marginBottom = '40px';
+    title.style.letterSpacing = '0.16em';
+    title.style.fontWeight = '600';
+
+    /* SIMPLE CLEAN TEXT (NO PLANET EFFECT) */
+    title.style.color = '#fdf2f8';
+    title.style.background = 'none';
+    title.style.animation = 'none';
+
+    
+
+        const note = document.createElement('div');
+    note.style.maxWidth = '820px';
+    note.style.fontSize = '1.15rem';
+    note.style.lineHeight = '2.3';
+    note.style.opacity = '0.95';
+    note.style.textAlign = 'left';
+
+    note.innerHTML = `
+      <p><strong>Dulshia!</strong> Thanks for everything.</p><br>
+<p>
+You came back into my life as the princess of my heart, and I promise you this—I’m never letting go again.<br>
+You are my world, and I’m endlessly grateful that the universe found its way back to you and then back to me.
+</p><br>
+<p>
+I never stopped looking for you.<br>
+I used to go through my mom’s Facebook, searching for your name again and again, only to find an empty screen each time.<br>
+But it wasn’t just online.<br>
+Every single Friday night, as I walked home, I passed the house where you once lived.<br>
+And every time I saw it, the memories came rushing back.
+</p><br>
+<p>
+I saw us there.<br>
+I felt those days again.<br>
+And I realized that no matter how many years passed, you never truly left my heart.
+</p><br>
+<p>
+What we share isn’t like other friendships.<br>
+It survived the silence, the distance, and every Friday night I spent remembering you.
+</p><br>
+      <p>
+I loved you so deeply, even though I always spoke to you with anger.<br>
+I’d tease you, hurt you without meaning to, and even complain about you to your mom.<br>
+But every night, I’d replay it all in my heart, feeling guilty, crying quietly.<br>
+When your mom scolded you, it broke something inside me—I’d want to cry for you.
+</p><br>
+<p>
+Even now, your face lives so clearly in my memory.<br>
+Sometimes, just thinking of you brings tears to my eyes.<br>
+Whenever you went away to your hometown, I missed you endlessly… and I cried.
+</p><br>
+<p>You sent me a friend request on Instagram in May 2025. I accepted it three days later, on May 11. But if you hadn’t sent it that day, I think I would’ve tried to find out more about you on my own.</p><br>
+      <p>I wouldn’t have disturbed you at all — I would’ve just kept thinking about you quietly. Because at that time, I had decided not to talk to anyone. By ‘anyone,’ I meant strangers. But you were never a stranger to me.</p><br>
+      <p>When we were kids, I liked you so much — more than I ever showed. I never had the courage to express it. I’d act angry, argue with you, pretend I didn’t care… but beneath all that, my heart had already chosen you.</p><br>
+      <p><strong>Dulshia, I’m truly sorry for everything so far.</strong> I know I’ve disturbed you, and I regret that. But the truth is, I like you deeply.</p><br>
+      <p>You’re always on my mind — every second, until now, and even forever. If I start talking to you, I feel like I could talk endlessly… but I stop myself, because I don’t want to hurt you.</p><br>
+      <p>You mean too much to me, my <em>chellakutty</em> . I feel a deep bond with you, even if you don’t feel the same, and even if you may never realize how strong it is for me.</p><br>
+      <p>And one more thing — I noticed more than you think. I knew something wasn’t right back then.</p><br>
+      <p>I want you to know that I truly see you—your heart, your strength, and the quiet beauty of who you are. The way you move through life with such grace never fails to leave me in awe.</p><br>
+      <p>I love you beyond words and beyond comparison. There is no one else I would choose to stand beside me, and no one who could ever fill the place you hold in my heart. You are my home, my world, and my most precious gift.</p><br>
+      <p>What we share is unlike anything else, and that’s exactly why I hold it so close. Today, tomorrow, and always—you are my world.</p><br>
+      <p>And one thing I know for sure—I think about you every single second, Dulshia… always Dulshia.</p><br>
+      <p>Thinking of you reminds me how incredibly lucky I am. You are the best part of my life, Dulshia. Always.</p><br>
+      <p style="text-align:right; margin-top:40px;">— Enoch 🤍</p>
+    `;
+
+    world.appendChild(note);
+
+    document.body.appendChild(world);
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
